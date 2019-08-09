@@ -1,0 +1,36 @@
+{
+  "name": "three-storybook",
+  "version": "1.0.0",
+  "description": "React版本的three.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stacksoda/three-storybook.git"
+  },
+  "keywords": [
+    "react",
+    "three.js",
+    "storybook"
+  ],
+  "author": "soda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stacksoda/three-storybook/issues"
+  },
+  "homepage": "https://github.com/stacksoda/three-storybook#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@storybook/react": "^5.1.10",
+    "babel-loader": "^8.0.6"
+  },
+  "dependencies": {
+    "dat.gui": "^0.7.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "three": "^0.107.0"
+  }
+}
