@@ -8,6 +8,9 @@ class BaseAnimation extends React.Component {
     componentDidMount(){
         this.init(this.threeNode);
     }
+    componentWillUnmount(){
+        this.gui.destroy();
+    }
     init = targetNode => {
         window.addEventListener('resize', onResize, false);
         const stats = initStatus();
@@ -68,9 +71,10 @@ class BaseAnimation extends React.Component {
             this.rotationSpeed = 0.02;
             this.bouncingSpeed = 0.03;
         }
-        const gui = new dat.GUI();
-        gui.add(controls, 'rotationSpeed', 0, 0.5);
-        gui.add(controls, 'bouncingSpeed', 0, 0.5);
+        this.gui = new dat.GUI(this.targetNode);
+        
+        this.gui.add(controls, 'rotationSpeed', 0, 0.5);
+        this.gui.add(controls, 'bouncingSpeed', 0, 0.5);
         threeRender();
         let step = 0;
         function threeRender(){

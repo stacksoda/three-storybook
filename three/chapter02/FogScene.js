@@ -8,6 +8,9 @@ class BaseScene extends React.Component {
     componentDidMount(){
         this.init(this.threeNode);
     }
+    componentWillUnmount(){
+        this.gui.destroy();
+    }
     init = targetNode => {
         window.addEventListener('resize', onResize, false);
         const stats = initStatus();
@@ -84,12 +87,12 @@ class BaseScene extends React.Component {
                 console.log(scene.children);
             }
         }
-        const gui = new dat.GUI();
-        gui.add(controls, 'rotationSpeed', 0, 0.5);
-        gui.add(controls, 'addCube');
-        gui.add(controls, 'removeCube');
-        gui.add(controls, 'outputObjects');
-        gui.add(controls, 'numberOfObjects').listen();
+        this.gui = new dat.GUI();
+        this.gui.add(controls, 'rotationSpeed', 0, 0.5);
+        this.gui.add(controls, 'addCube');
+        this.gui.add(controls, 'removeCube');
+        this.gui.add(controls, 'outputObjects');
+        this.gui.add(controls, 'numberOfObjects').listen();
 
 
         threeRender();
