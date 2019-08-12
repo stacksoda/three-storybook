@@ -1,7 +1,21 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from '@storybook/react/demo';
-import { BaseEnv, AddLight, BaseAnimation, BasicScene, FogScene, OverrideMaterial, CustomGeometry, MeshProperties, BothCamera, CameraLookAt, AmbientLight } from '../three';
+import { 
+  BaseEnv, 
+  AddLight, 
+  BaseAnimation, 
+  BasicScene, 
+  FogScene, 
+  OverrideMaterial, 
+  CustomGeometry, 
+  MeshProperties, 
+  BothCamera, 
+  CameraLookAt, 
+  AmbientLight,
+  SpotLight,
+  PointLight,
+} from '../three';
 
 storiesOf('Button', module)
   .add('with text', () => (
@@ -45,4 +59,10 @@ storiesOf('THREEjs.chapter02', module)
 storiesOf('THREEjs.chapter03', module)
   .add('AmbientLight', () => (
     <AmbientLight />
+  ))
+  .add('SpotLight', () => (
+    <SpotLight />
+  ))
+  .add('PointLight', () => (
+    <PointLight />
   ))

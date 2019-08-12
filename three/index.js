@@ -9,5 +9,21 @@ import MeshProperties from './chapter02/MeshProperties';
 import BothCamera from './chapter02/BothCamera';
 import CameraLookAt from './chapter02/CameraLookAt';
 import AmbientLight from './chapter03/AmbientLight';
+import SpotLight from './chapter03/SpotLight';
+import PointLight from './chapter03/PointLight';
 
-export {BaseEnv, AddLight, BaseAnimation, BasicScene, FogScene, OverrideMaterial, CustomGeometry, MeshProperties, BothCamera, CameraLookAt, AmbientLight};
+export {
+    BaseEnv, 
+    AddLight, 
+    BaseAnimation, 
+    BasicScene, 
+    FogScene, 
+    OverrideMaterial, 
+    CustomGeometry, 
+    MeshProperties, 
+    BothCamera, 
+    CameraLookAt, 
+    AmbientLight, 
+    SpotLight,
+    PointLight
+};
