@@ -1,6 +1,7 @@
 import React from 'react';
 import * as THREE from 'three';
 import TrackballControls from 'three/examples/jsm/controls/TrackballControls';
+import './style.scss';
 
 class BaseEnv extends React.Component {
     componentDidMount(){

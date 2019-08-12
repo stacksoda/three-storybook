@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import dat from 'dat.gui';
 
 import { initStatus, initTrackballControls } from "../util/util";
+import './style.scss';
 
 class BaseScene extends React.Component {
     componentDidMount(){
