@@ -18,6 +18,8 @@ import {
   DirectionalLight,
   HemisphereLight,
   AreaLight,
+  Lensflares,
+  BaseMeshMaterial,
 } from '../three';
 
 storiesOf('Button', module)
@@ -77,4 +79,11 @@ storiesOf('THREEjs.chapter03', module)
   ))
   .add('AreaLight', () => (
     <AreaLight />
+  ))
+  .add('Lensflares', () => (
+    <Lensflares />
+  ));
+storiesOf('THREEjs.chapter04', module)
+  .add('BaseMeshMaterial', () => (
+    <BaseMeshMaterial />
   ))

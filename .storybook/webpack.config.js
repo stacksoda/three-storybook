@@ -13,6 +13,16 @@ module.exports = async ({ config, mode }) => {
     include: path.resolve(__dirname, '../'),
   });
 
+  config.module.rules.push({
+    test: /\.(png|jpg|gif|obj)$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: {}
+      }
+    ]
+  })
+
   // Return the altered config
   return config;
 };

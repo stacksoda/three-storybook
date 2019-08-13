@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import Stats from "./Stats";
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
+import gopherObj from '../../assets/models/gopher/gopher.obj';
 /**
  * @param {Number} 
  */
@@ -222,5 +224,79 @@ function initCamera() {
     return camera;
 }
 
-export { initStatus, initTrackballControls, addHouseAndTree, addDefaultCubeAndSphere, addGroundPlane, initRenderer, initCamera }
+function addBasicMaterialSettings(gui, controls, material, name) {
+    const folderName = (name !== undefined) ? name : 'THREE.Material';
+
+    controls.material = material;
+    const folder = gui.addFolder(folderName);
+    folder.add(controls.material, 'id');
+    folder.add(controls.material, 'uuid');
+    folder.add(controls.material, 'name');
+    folder.add(controls.material, 'opacity', 0, 1, 0.01);
+    folder.add(controls.material, 'transparent');
+    // folder.add(controls.material, 'overdraw', 0, 1, 0.01);
+    folder.add(controls.material, 'visible');
+    folder.add(controls.material, 'side', {FrontSide: 0, BackSide: 1, BothSides: 2}).onChange(side => {
+        controls.material.side = parseInt(side);
+    });
+
+    folder.add(controls.material, 'colorWrite');
+    folder.add(controls.material, 'flatShading').onChange(shading => {
+        controls.material.flatShading = shading;
+        controls.material.needsUpdate = true;
+    });
+    folder.add(controls.material, 'premultipliedAlpha');
+    folder.add(controls.material, 'dithering');
+    folder.add(controls.material, 'shadowSide', {FrontSide: 0, BackSide: 1, BothSides: 2});
+    folder.add(controls.material, 'vertexColors', {NoColors: THREE.NoColors, FaceColors: THREE.FaceColors, VertextColors: THREE.VertexColors}).onChange(vertexColors => {
+        material.vertexColors = parseInt(vertexColors);
+    });
+    folder.add(controls.material, 'fog');
+
+    return folder;
+}
+
+function loadGopher(material) {
+    const loader = new OBJLoader();
+    let mesh = null;
+    const gopher = new Promise(resolve => {
+        loader.load(gopherObj, loadedMesh => {
+            mesh = loadedMesh;
+            if (material) {
+                computeNormalsGroup(mesh);
+                setMaterialGroup(material, mesh);
+            }
+            resolve(mesh);
+        })
+    });
+    return gopher;
+}
+
+function setMaterialGroup(material, group) {
+    if (group instanceof THREE.Mesh) {
+        group.material = material;        
+    } else if (group instanceof THREE.Group) {
+        group.children.forEach(function(child) {setMaterialGroup(material, child)});
+    }
+}
+function computeNormalsGroup(group) {
+    if (group instanceof THREE.Mesh) {
+        var tempGeom = new THREE.Geometry();
+        tempGeom.fromBufferGeometry(group.geometry)
+        tempGeom.computeFaceNormals();
+        tempGeom.mergeVertices();
+        tempGeom.computeVertexNormals();
+
+        tempGeom.normalsNeedUpdate = true;
+        
+        // group = new THREE.BufferGeometry();
+        // group.fromGeometry(tempGeom);
+        group.geometry = tempGeom;
+
+    } else if (group instanceof THREE.Group) {
+        group.children.forEach(function(child) {computeNormalsGroup(child)});
+    }
+}
+
+export { initStatus, initTrackballControls, addHouseAndTree, addDefaultCubeAndSphere, addGroundPlane, initRenderer, initCamera, addBasicMaterialSettings, loadGopher }
 

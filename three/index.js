@@ -13,7 +13,9 @@ import SpotLight from './chapter03/SpotLight';
 import PointLight from './chapter03/PointLight';
 import DirectionalLight from './chapter03/DirectionalLight';
 import HemisphereLight from './chapter03/HemisphereLight';
-import AreaLight from './chapter03/AreaLight'
+import AreaLight from './chapter03/AreaLight';
+import Lensflares from './chapter03/Lensflares';
+import BaseMeshMaterial from './chapter04/BaseMeshMaterial';
 
 export {
     BaseEnv, 
@@ -32,4 +34,6 @@ export {
     DirectionalLight,
     HemisphereLight,
     AreaLight,
+    Lensflares,
+    BaseMeshMaterial,
 };
