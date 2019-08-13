@@ -1,4 +1,4 @@
-const Stats = function() {
+const Stats = function(node) {
     let mode = 0;
 
     const container = document.createElement('div');

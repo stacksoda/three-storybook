@@ -11,6 +11,9 @@ import CameraLookAt from './chapter02/CameraLookAt';
 import AmbientLight from './chapter03/AmbientLight';
 import SpotLight from './chapter03/SpotLight';
 import PointLight from './chapter03/PointLight';
+import DirectionalLight from './chapter03/DirectionalLight';
+import HemisphereLight from './chapter03/HemisphereLight';
+import AreaLight from './chapter03/AreaLight'
 
 export {
     BaseEnv, 
@@ -25,5 +28,8 @@ export {
     CameraLookAt, 
     AmbientLight, 
     SpotLight,
-    PointLight
+    PointLight,
+    DirectionalLight,
+    HemisphereLight,
+    AreaLight,
 };

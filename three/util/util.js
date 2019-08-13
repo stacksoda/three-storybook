@@ -196,8 +196,10 @@ function addHouseAndTree(scene) {
  * 初始化并装在dom到指定对象之上 返回renderer
  * @param {*} targetNode 
  */
-function initRenderer(targetNode) {
-    const renderer = new THREE.WebGLRenderer();
+function initRenderer(targetNode, additionalProperties) {
+    const props = (typeof additionalProperties !== 'undefined' && additionalProperties) ? additionalProperties : {};
+    console.log('props', props)
+    const renderer = new THREE.WebGLRenderer(props);
     renderer.shadowMap.enabled = true;
     renderer.shadowMapSoft = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;

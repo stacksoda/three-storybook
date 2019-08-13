@@ -16,7 +16,7 @@ class AmbientLight extends React.Component {
     }
     init = targetNode => {
         // 初始化基础对象
-        const renderer = initRenderer(this.threeNode);// 绑定dom并返回renderer
+        const renderer = initRenderer(targetNode);// 绑定dom并返回renderer
         const camera = initCamera();
         const scene = new THREE.Scene();
         // 全局光

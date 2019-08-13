@@ -15,6 +15,9 @@ import {
   AmbientLight,
   SpotLight,
   PointLight,
+  DirectionalLight,
+  HemisphereLight,
+  AreaLight,
 } from '../three';
 
 storiesOf('Button', module)
@@ -65,4 +68,13 @@ storiesOf('THREEjs.chapter03', module)
   ))
   .add('PointLight', () => (
     <PointLight />
+  ))
+  .add('DirectionalLight', () => (
+    <DirectionalLight />
+  ))
+  .add('HemisphereLight', () => (
+    <HemisphereLight />
+  ))
+  .add('AreaLight', () => (
+    <AreaLight />
   ))
