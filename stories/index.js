@@ -20,6 +20,9 @@ import {
   AreaLight,
   Lensflares,
   BaseMeshMaterial,
+  DepthMaterial,
+  CombinedMaterial,
+  MeshNormalMaterial,
 } from '../three';
 
 storiesOf('Button', module)
@@ -86,4 +89,13 @@ storiesOf('THREEjs.chapter03', module)
 storiesOf('THREEjs.chapter04', module)
   .add('BaseMeshMaterial', () => (
     <BaseMeshMaterial />
+  ))
+  .add('DepthMaterial', () => (
+    <DepthMaterial />
+  ))
+  .add('CombinedMaterial', () => (
+    <CombinedMaterial />
+  ))
+  .add('MeshNormalMaterial', () => (
+    <MeshNormalMaterial />
   ))

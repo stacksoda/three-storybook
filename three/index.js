@@ -16,6 +16,9 @@ import HemisphereLight from './chapter03/HemisphereLight';
 import AreaLight from './chapter03/AreaLight';
 import Lensflares from './chapter03/Lensflares';
 import BaseMeshMaterial from './chapter04/BaseMeshMaterial';
+import DepthMaterial from './chapter04/DepthMaterial';
+import CombinedMaterial from './chapter04/CombinedMaterial';
+import MeshNormalMaterial from './chapter04/MeshNormalMaterial'
 
 export {
     BaseEnv, 
@@ -36,4 +39,7 @@ export {
     AreaLight,
     Lensflares,
     BaseMeshMaterial,
+    DepthMaterial,
+    CombinedMaterial,
+    MeshNormalMaterial
 };

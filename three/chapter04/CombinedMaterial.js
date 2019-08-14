@@ -1,13 +1,14 @@
 /**
- * @file 深度网格材质
+ * @file 复合网格材质
  */
 import React from 'react';
 import * as THREE from 'three';
 import dat from 'dat.gui';
+import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils'
 import { initStatus, initRenderer, initCamera, initTrackballControls, addHouseAndTree, addBasicMaterialSettings } from "../util/util";
 import './style.scss';
 
-class AmbientLight extends React.Component {
+class CombinedMaterial extends React.Component {
     componentDidMount() {
         this.init(this.threeNode);
     }
@@ -19,7 +20,7 @@ class AmbientLight extends React.Component {
         const renderer = initRenderer(targetNode);// 绑定dom并返回renderer
         // const camera = initCamera();
         const scene = new THREE.Scene();
-        scene.overrideMaterial = new THREE.MeshDepthMaterial();
+        // scene.overrideMaterial = new THREE.MeshDepthMaterial();
 
         var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 50, 110);
         camera.position.set(-50, 40, 50);
@@ -64,14 +65,23 @@ class AmbientLight extends React.Component {
                 this.cameraFar = camera.far;
                 this.rotationSpeed = 0.02;
                 this.numberOfObjects = scene.children.length;
+                this.color = 0x00ff00;
 
                 this.addCube = function() {
                     const cubeSize = Math.ceil(3 + (Math.random() * 3));
                     const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-                    const cubeMaterial = new THREE.MeshLambertMaterial({
-                        color: Math.random() * 0xffffff
+
+                    const cubeMaterial = new THREE.MeshDepthMaterial();
+                    const colorMaterial = new THREE.MeshBasicMaterial({
+                        color: controls.color,
+                        transparent: true,
+                        blending: THREE.MultiplyBlending
                     });
-                    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                    const cube = new SceneUtils.createMultiMaterialObject(cubeGeometry, [
+                        colorMaterial,
+                        cubeMaterial
+                    ]);
+                    cube.children[1].scale.set(0.99, 0.99, 0.99);
                     cube.castShadow = true;
             
                     // position the cube randomly in the scene
@@ -94,11 +104,11 @@ class AmbientLight extends React.Component {
                     console.log('scene.children', scene.children);
                 }
             };
-            addBasicMaterialSettings(gui, controls, scene.overrideMaterial);
-            const spGui = gui.addFolder("THREE.MeshDepthMaterial");
-            spGui.add(scene.overrideMaterial, 'wireframe');
-            spGui.add(scene.overrideMaterial, 'wireframeLinewidth', 0, 20);
-
+            // addBasicMaterialSettings(gui, controls, scene.overrideMaterial);
+            // const spGui = gui.addFolder("THREE.MeshDepthMaterial");
+            // spGui.add(scene.overrideMaterial, 'wireframe');
+            // spGui.add(scene.overrideMaterial, 'wireframeLinewidth', 0, 20);
+            gui.addColor(controls, 'color');
             gui.add(controls, 'rotationSpeed', 0, 0.5);
             gui.add(controls, 'addCube');
             gui.add(controls, 'removeCube');
@@ -123,4 +133,4 @@ class AmbientLight extends React.Component {
     }
 }
 
-export default AmbientLight;
+export default CombinedMaterial;

@@ -7,7 +7,7 @@ import dat from 'dat.gui';
 import { initStatus, initRenderer, initCamera, initTrackballControls, addBasicMaterialSettings, loadGopher } from "../util/util";
 import './style.scss';
 
-class BaseMeshMaterial extends React.Component {
+class MeshNormalMaterial extends React.Component {
     componentDidMount(){
         this.init(this.threeNode);
     }
@@ -45,11 +45,7 @@ class BaseMeshMaterial extends React.Component {
         const cubeGeometry = new THREE.BoxGeometry(15, 15, 15);
         const planeGeometry = new THREE.PlaneGeometry(14, 14, 4, 4);
 
-        const meshMaterial = new THREE.MeshBasicMaterial({
-            color: 0x7777ff,
-            name: 'Basic Material',
-            flatShading: true
-        });
+        const meshMaterial = new THREE.MeshNormalMaterial();
 
         const sphere = new THREE.Mesh(sphereGeometry, meshMaterial);
         const cube = new THREE.Mesh(cubeGeometry, meshMaterial);
@@ -100,21 +96,21 @@ class BaseMeshMaterial extends React.Component {
                 this.rotationSpeed = 0.02;
                 this.bouncingSpeed = 0.03;
 
-                this.color = meshMaterial.color.getStyle();
+                // this.color = meshMaterial.color.getStyle();
                 this.selectedMesh = "cube";
             }
-            const spGui = gui.addFolder("THREE.MeshBasicMaterial");
-            spGui.addColor(controls, 'color').onChange(e => {
-                meshMaterial.color.setStyle(e);
-            });
-            spGui.add(meshMaterial, 'wireframe');
-            spGui.add(meshMaterial, 'wireframeLinewidth', 0, 20);
-            spGui.add(meshMaterial, 'wireframeLinejoin', ['round', 'bevel', 'miter']).onChange(e => {
-                meshMaterial.wireframeLinejoin = e
-            });
-            spGui.add(meshMaterial, 'wireframeLinecap', ['butt', 'round', 'square']).onChange(e => {
-                meshMaterial.wireframeLinecap = e;
-            });
+            // const spGui = gui.addFolder("THREE.MeshBasicMaterial");
+            // spGui.addColor(controls, 'color').onChange(e => {
+            //     meshMaterial.color.setStyle(e);
+            // });
+            // spGui.add(meshMaterial, 'wireframe');
+            // spGui.add(meshMaterial, 'wireframeLinewidth', 0, 20);
+            // spGui.add(meshMaterial, 'wireframeLinejoin', ['round', 'bevel', 'miter']).onChange(e => {
+            //     meshMaterial.wireframeLinejoin = e
+            // });
+            // spGui.add(meshMaterial, 'wireframeLinecap', ['butt', 'round', 'square']).onChange(e => {
+            //     meshMaterial.wireframeLinecap = e;
+            // });
             loadGopher(meshMaterial).then(gopher => {
                 gopher.scale.x = 4;
                 gopher.scale.y = 4;
@@ -154,4 +150,4 @@ class BaseMeshMaterial extends React.Component {
     }
 }
 
-export default BaseMeshMaterial;
+export default MeshNormalMaterial;

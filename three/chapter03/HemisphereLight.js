@@ -6,7 +6,8 @@ import * as THREE from 'three';
 import dat from 'dat.gui';
 import { initStatus, initRenderer, initCamera, initTrackballControls, addHouseAndTree } from "../util/util";
 import './style.scss';
-import bg from '../../assets/textures/ground/grasslight-big.jpg'
+import bg from '../../assets/textures/ground/grasslight-big.jpg';
+
 
 class HemisphereLight extends React.Component {
     componentDidMount() {
@@ -21,7 +22,7 @@ class HemisphereLight extends React.Component {
         const camera = initCamera();
         const scene = new THREE.Scene();
 
-
+        console.log('bg', bg)
         // 添加对象
         const textureGrass = new THREE.TextureLoader().load(bg);
         textureGrass.wrapS = THREE.RepeatWrapping;

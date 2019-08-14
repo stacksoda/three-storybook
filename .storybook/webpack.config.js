@@ -14,7 +14,7 @@ module.exports = async ({ config, mode }) => {
   });
 
   config.module.rules.push({
-    test: /\.(png|jpg|gif|obj)$/,
+    test: /\.obj$/,
     use: [
       {
         loader: 'file-loader',
