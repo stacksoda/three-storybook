@@ -18,8 +18,16 @@ import Lensflares from './chapter03/Lensflares';
 import BaseMeshMaterial from './chapter04/BaseMeshMaterial';
 import DepthMaterial from './chapter04/DepthMaterial';
 import CombinedMaterial from './chapter04/CombinedMaterial';
-import MeshNormalMaterial from './chapter04/MeshNormalMaterial'
-
+import MeshNormalMaterial from './chapter04/MeshNormalMaterial';
+import MeshFaceMaterial from './chapter04/MeshFaceMaterial';
+import MeshLambertMaterial from './chapter04/MeshLambertMaterial';
+import MeshPhongMaterial from './chapter04/MeshPhongMaterial';
+import MeshToonMaterial from './chapter04/MeshToonMaterial';
+import MeshStandardMaterial from './chapter04/MeshStandardMaterial';
+import MeshPhysicalMaterial from './chapter04/MeshPhysicalMaterial';
+import ShaderMaterial from './chapter04/ShaderMaterial';
+import LineMaterial from './chapter04/LineMaterial';
+import LineMaterialDashed from './chapter04/LineMaterialDashed';
 export {
     BaseEnv, 
     AddLight, 
@@ -41,5 +49,14 @@ export {
     BaseMeshMaterial,
     DepthMaterial,
     CombinedMaterial,
-    MeshNormalMaterial
+    MeshNormalMaterial,
+    MeshFaceMaterial,
+    MeshLambertMaterial,
+    MeshPhongMaterial,
+    MeshToonMaterial,
+    MeshStandardMaterial,
+    MeshPhysicalMaterial,
+    ShaderMaterial,
+    LineMaterial,
+    LineMaterialDashed,
 };

@@ -23,6 +23,15 @@ import {
   DepthMaterial,
   CombinedMaterial,
   MeshNormalMaterial,
+  MeshFaceMaterial,
+  MeshLambertMaterial,
+  MeshPhongMaterial,
+  MeshToonMaterial,
+  MeshStandardMaterial,
+  MeshPhysicalMaterial,
+  // ShaderMaterial,
+  LineMaterial,
+  LineMaterialDashed,
 } from '../three';
 
 storiesOf('Button', module)
@@ -98,4 +107,31 @@ storiesOf('THREEjs.chapter04', module)
   ))
   .add('MeshNormalMaterial', () => (
     <MeshNormalMaterial />
+  ))
+  .add('MeshFaceMaterial', () => (
+    <MeshFaceMaterial />
+  ))
+  .add('MeshLambertMaterial', () => (
+    <MeshLambertMaterial />
+  ))
+  .add('MeshPhongMaterial', () => (
+    <MeshPhongMaterial />
+  ))
+  .add('MeshToonMaterial', () => (
+    <MeshToonMaterial />
+  ))
+  .add('MeshStandardMaterial', () => (
+    <MeshStandardMaterial />
+  ))
+  .add('MeshPhysicalMaterial', () => (
+    <MeshPhysicalMaterial />
+  ))
+  // .add('ShaderMaterial', () => (
+  //   <ShaderMaterial />
+  // ))
+  .add('LineMaterial', () => (
+    <LineMaterial />
+  ))
+  .add('LineMaterialDashed', () => (
+    <LineMaterialDashed />
   ))

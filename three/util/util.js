@@ -3,6 +3,7 @@ import Stats from "./Stats";
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 import gopherObj from '../../assets/models/gopher/gopher.obj';
+import floorWood from '../../assets/textures/general/floor-wood.jpg';
 /**
  * @param {Number} 
  */
@@ -45,6 +46,85 @@ function addGroundPlane(scene) {
     scene.add(plane);
     
     return plane;
+}
+function addLargeGroundPlane(scene, useTexure) {
+    const withTexture = (useTexure !== undefined) ? useTexure : false;
+
+    const planeGeometry = new THREE.PlaneGeometry(10000, 10000);
+    const planeMaterial = new THREE.MeshPhongMaterial({
+        color: 0xffffff
+    });
+    if (withTexture) {
+        const textureLoader = new THREE.TextureLoader();
+        planeMaterial.map = textureLoader.load(floorWood);
+        planeMaterial.map.wrapS = THREE.RepeatWrapping;
+        planeMaterial.map.wrapT = THREE.RepeatWrapping;
+        planeMaterial.map.repeat.set(80, 80);
+    }
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.receiveShadow = true;
+
+    plane.rotation.x = -0.5 * Math.PI;
+    plane.position.x = 0;
+    plane.position.y = 0;
+    plane.position.z = 0;
+
+    scene.add(plane);
+
+    return plane;
+}
+// 添加多种网格
+function addMeshSelection(gui, controls, material, scene) {
+    const sphereGeometry = new THREE.SphereGeometry(10, 20, 20);
+    const cubeGeometry = new THREE.BoxGeometry(16, 16, 15);
+    const planeGeometry = new THREE.PlaneGeometry(14, 14, 4, 4);
+
+    const sphere = new THREE.Mesh(sphereGeometry, material);
+    const cube = new THREE.Mesh(cubeGeometry, material);
+    const plane = new THREE.Mesh(planeGeometry, material);
+
+    sphere.position.x = 0;
+    sphere.position.y = 11;
+    sphere.position.z = 2;
+
+    cube.position.y = 8;
+
+    controls.selectedMesh = "cube";
+
+    loadGopher(material).then(gopher => {
+        gopher.scale.x = 5;
+        gopher.scale.y = 5;
+        gopher.scale.z = 5;
+        gopher.position.z = 0;
+        gopher.position.x = -10;
+        gopher.position.y = 0;
+
+        gui.add(controls, 'selectedMesh', ["cube", "sphere", "plane", "gopher"]).onChange(e => {
+            scene.remove(controls.selected);
+
+            switch (e) {
+                case "cube":
+                    scene.add(cube);
+                    controls.selected = cube;
+                    break;
+                case "sphere":
+                    scene.add(sphere);
+                    controls.selected = sphere;
+                    break;
+                case "gopher":
+                    scene.add(gopher);
+                    controls.selected = gopher;
+                    break;
+                case "plane":
+                    scene.add(plane);
+                    controls.selected = plane;
+                    break;
+            }
+        });
+
+        controls.selected = cube;
+        scene.add(controls.selected);
+    })
 }
 
 function addDefaultCubeAndSphere(scene) {
@@ -298,5 +378,17 @@ function computeNormalsGroup(group) {
     }
 }
 
-export { initStatus, initTrackballControls, addHouseAndTree, addDefaultCubeAndSphere, addGroundPlane, initRenderer, initCamera, addBasicMaterialSettings, loadGopher }
+export { 
+    initStatus, 
+    initTrackballControls, 
+    addHouseAndTree, 
+    addDefaultCubeAndSphere, 
+    addGroundPlane, 
+    initRenderer, 
+    initCamera, 
+    addBasicMaterialSettings, 
+    loadGopher, 
+    addLargeGroundPlane,
+    addMeshSelection
+}
 
