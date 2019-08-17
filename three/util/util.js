@@ -30,6 +30,26 @@ function initTrackballControls(camera, renderer) {
     return trackballControls;
 }
 
+function initDefaultLighting(scene, initialPosition) {
+    const position = (initialPosition !== undefined) ? initialPosition : new THREE.Vector3(-10, 30, 40);
+
+    const spotLight = new THREE.SpotLight(0xffffff);
+    spotLight.position.copy(position);
+    spotLight.shadow.mapSize.width = 2048;
+    spotLight.shadow.mapSize.height = 2048;
+    spotLight.shadow.camera.fov = 15;
+    spotLight.castShadow = true;
+    spotLight.decay = 2;
+    spotLight.penumbra = 0.05;
+    spotLight.name = "spotLight";
+
+    scene.add(spotLight);
+
+    const ambientLight = new THREE.AmbientLight(0x343434);
+    ambientLight.name = "ambientLight";
+    scene.add(ambientLight);
+}
+
 function addGroundPlane(scene) {
     const planeGeometry = new THREE.PlaneGeometry(60, 20, 120, 120);
     const planeMaterial = new THREE.MeshPhongMaterial({
@@ -378,6 +398,27 @@ function computeNormalsGroup(group) {
     }
 }
 
+const applyMeshNormalMaterial = function(geometry, material) {
+    if (!material || material.type !== "MeshNormalMaterial") {
+        material = new THREE.MeshNormalMaterial();
+        material.side = THREE.DoubleSide;
+    }
+    return new THREE.Mesh(geometry, material);
+}
+
+function redrawGeometryAndUpdateUI(gui, scene, controls, geomFunction) {
+
+}
+
+function guiRemoveFolder(gui, folder) {
+    if (folder && folder.name && gui.__folders[folder.name]) {
+        gui.__folders[folder.name].close();
+        gui.__folders[folder.name].domElement.parentNode.parentNode.removeChild(gui.__folders[folder.name].domElement.parentNode);
+        delete gui.__folders[folder.name];
+        gui.onResize();
+    }
+}
+
 export { 
     initStatus, 
     initTrackballControls, 
@@ -389,6 +430,8 @@ export {
     addBasicMaterialSettings, 
     loadGopher, 
     addLargeGroundPlane,
-    addMeshSelection
+    addMeshSelection,
+    initDefaultLighting,
+    applyMeshNormalMaterial
 }
 

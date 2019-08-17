@@ -28,6 +28,7 @@ import MeshPhysicalMaterial from './chapter04/MeshPhysicalMaterial';
 import ShaderMaterial from './chapter04/ShaderMaterial';
 import LineMaterial from './chapter04/LineMaterial';
 import LineMaterialDashed from './chapter04/LineMaterialDashed';
+import Basic2DGeometriesPlane from './chapter05/Basic2DGeometriesPlane';
 export {
     BaseEnv, 
     AddLight, 
@@ -59,4 +60,5 @@ export {
     ShaderMaterial,
     LineMaterial,
     LineMaterialDashed,
+    Basic2DGeometriesPlane,
 };

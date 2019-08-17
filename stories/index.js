@@ -1,17 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from '@storybook/react/demo';
-import { 
-  BaseEnv, 
-  AddLight, 
-  BaseAnimation, 
-  BasicScene, 
-  FogScene, 
-  OverrideMaterial, 
-  CustomGeometry, 
-  MeshProperties, 
-  BothCamera, 
-  CameraLookAt, 
+import {
+  BaseEnv,
+  AddLight,
+  BaseAnimation,
+  BasicScene,
+  FogScene,
+  OverrideMaterial,
+  CustomGeometry,
+  MeshProperties,
+  BothCamera,
+  CameraLookAt,
   AmbientLight,
   SpotLight,
   PointLight,
@@ -32,6 +32,7 @@ import {
   // ShaderMaterial,
   LineMaterial,
   LineMaterialDashed,
+  Basic2DGeometriesPlane,
 } from '../three';
 
 storiesOf('Button', module)
@@ -134,4 +135,8 @@ storiesOf('THREEjs.chapter04', module)
   ))
   .add('LineMaterialDashed', () => (
     <LineMaterialDashed />
+  ))
+storiesOf('THREEjs.chapter05', module)
+  .add('Basic2DGeometriesPlane', () => (
+    <Basic2DGeometriesPlane />
   ))
